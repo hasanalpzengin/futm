@@ -1,0 +1,14 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <span>FUTM</span>
+      <span class="spacer"></span>
+      <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item *ngFor="let item of menuList" [routerLink]="item.route">
+      <mat-icon>{{item.icon}}</mat-icon>
+      <span>{{item.title}}</span>
+    </button>
+  </mat-menu>
