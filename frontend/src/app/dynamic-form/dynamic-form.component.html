@@ -1,0 +1,50 @@
+<h3 mat-dialog-title>Dynamic Form</h3>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="dynamic-form">
+  <mat-dialog-content>
+    <ng-container *ngFor="let field of fields">
+      <div appFieldGenerator [field]="field" [form]="form" class="form-field-wrapper">
+        <div [ngSwitch]="field.type">
+          
+          <!-- For input fields -->
+          <mat-form-field *ngSwitchCase="'input'" appearance="outline" class="full-width">
+            <mat-label>{{ field.placeholder }}</mat-label>
+            <input matInput [formControlName]="field.field" [type]="field.inputType || 'text'">
+          </mat-form-field>
+          
+          <!-- For textarea fields -->
+          <mat-form-field *ngSwitchCase="'textarea'" appearance="outline" class="full-width">
+            <mat-label>{{ field.placeholder }}</mat-label>
+            <textarea matInput [formControlName]="field.field" rows="4"></textarea>
+          </mat-form-field>
+          
+          <!-- For select fields -->
+          <mat-form-field *ngSwitchCase="'select'" appearance="outline" class="full-width">
+            <mat-label>{{ field.placeholder }}</mat-label>
+            <select matNativeControl [formControlName]="field.field">
+              <option *ngFor="let option of field.options" [value]="option.value">
+                {{ option.label }}
+              </option>
+            </select>
+          </mat-form-field>
+          
+          <!-- For checkbox fields -->
+          <mat-checkbox *ngSwitchCase="'checkbox'" [formControlName]="field.field">
+            {{ field.placeholder }}
+          </mat-checkbox>
+          
+          <!-- Handle unknown field types -->
+          <div *ngSwitchDefault class="unknown-field">
+            Unknown field type: {{ field.type }}
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </mat-dialog-content>
+  
+
+  <mat-dialog-actions class="form-actions">
+    <button mat-raised-button color="primary" type="submit">Submit</button>
+    <button mat-button color="warn" type="button" (click)="onCancel()">Cancel</button>
+  </mat-dialog-actions>
+</form>

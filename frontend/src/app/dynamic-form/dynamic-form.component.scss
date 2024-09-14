@@ -1,0 +1,19 @@
+.dynamic-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.form-field-wrapper {
+  margin-bottom: 16px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.unknown-field {
+  color: red;
+  font-style: italic;
+}
