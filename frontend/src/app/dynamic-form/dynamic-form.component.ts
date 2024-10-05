@@ -1,18 +1,20 @@
 import { CommonModule } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { MatOptionModule } from '@angular/material/core';
+import { MatOptionModule, provideNativeDateAdapter } from '@angular/material/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FieldGeneratorDirective } from '../shared/field-generator.directive';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-dynamic-form',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, MatButtonModule, MatFormFieldModule, MatOptionModule, MatDialogModule, FieldGeneratorDirective, MatInputModule, MatCheckboxModule],
+  providers: [provideNativeDateAdapter()],
+  imports: [ReactiveFormsModule, CommonModule, MatButtonModule, MatFormFieldModule, MatOptionModule, MatDialogModule, FieldGeneratorDirective, MatInputModule, MatCheckboxModule, MatDatepickerModule],
   templateUrl: './dynamic-form.component.html',
   styleUrl: './dynamic-form.component.scss'
 })

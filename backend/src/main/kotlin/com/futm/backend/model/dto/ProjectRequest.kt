@@ -6,6 +6,6 @@ import java.util.*
 data class ProjectRequest(
     val name: String,
     val description: String,
-    val ownerId: UUID,
+    val ownerId: UUID?,
     val startDate: LocalDateTime
 )

@@ -32,7 +32,14 @@
           <mat-checkbox *ngSwitchCase="'checkbox'" [formControlName]="field.field">
             {{ field.placeholder }}
           </mat-checkbox>
-          
+
+          <mat-form-field *ngSwitchCase="'datepicker'"  appearance="outline" class="full-width">
+            <mat-label>{{field.placeholder}}</mat-label>
+            <input [formControlName]="field.field" matInput [matDatepicker]="picker">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
           <!-- Handle unknown field types -->
           <div *ngSwitchDefault class="unknown-field">
             Unknown field type: {{ field.type }}
@@ -41,8 +48,6 @@
       </div>
     </ng-container>
   </mat-dialog-content>
-  
-
   <mat-dialog-actions class="form-actions">
     <button mat-raised-button color="primary" type="submit">Submit</button>
     <button mat-button color="warn" type="button" (click)="onCancel()">Cancel</button>

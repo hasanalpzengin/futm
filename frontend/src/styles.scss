@@ -1,4 +1,32 @@
-/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@include mat.core();
+
+$theme: mat.define-theme((
+  color: (
+    theme-type: dark,
+    primary: mat.$rose-palette,
+    tertiary: mat.$rose-palette,
+  ),
+  typography: (
+    brand-family: 'Comic Sans',
+    bold-weight: 900
+  ),
+  density: (
+    scale: -2
+  )
+));
+
+html {
+  // Apply the light theme by default
+  @include mat.fab-theme($theme);
+  @include mat.core-theme($theme);
+  @include mat.button-theme($theme);
+  @include mat.menu-theme($theme);
+  @include mat.table-theme($theme);
+  @include mat.toolbar-theme($theme);
+  @include mat.input-theme($theme);
+  @include mat.form-field-theme($theme);
+  @include mat.dialog-theme($theme);
+  @include mat.all-component-themes($theme);
+}

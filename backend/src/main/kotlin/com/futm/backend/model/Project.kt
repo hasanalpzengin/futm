@@ -21,8 +21,8 @@ data class Project(
     var endDate: LocalDateTime? = null,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "owner_id", nullable = false)
-    var owner: User,
+    @JoinColumn(name = "owner_id", nullable = true)
+    var owner: User?,
 
     @OneToMany(mappedBy = "project", cascade = [CascadeType.ALL], orphanRemoval = true)
     var requirements: List<Requirement> = listOf(),

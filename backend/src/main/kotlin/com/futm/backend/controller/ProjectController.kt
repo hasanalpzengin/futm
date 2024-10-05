@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import java.util.*
 
+@CrossOrigin(origins = ["http://localhost:4200"])
 @RestController
 @RequestMapping("/projects")
 class ProjectController(
@@ -47,7 +48,7 @@ class ProjectController(
         @PathVariable id: UUID,
         @RequestParam name: String,
         @RequestParam description: String,
-        @RequestParam ownerId: UUID
+        @RequestParam ownerId: UUID?
     ): ResponseEntity<Project> {
         val project = projectService.updateProject(id, name, description, ownerId)
         return if (project != null) {

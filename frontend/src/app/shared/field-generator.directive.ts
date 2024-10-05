@@ -44,6 +44,9 @@ export class FieldGeneratorDirective implements OnInit {
       case 'checkbox':
         control = new FormControl(false, validators);
         break;
+      case 'datepicker':
+        control = new FormControl(0, validators);
+        break;
       default:
         console.error(`Unknown field type: ${this.field.type}`);
         return;
